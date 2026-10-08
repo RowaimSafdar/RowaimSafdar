@@ -27,7 +27,6 @@ PROFILE = [
     ("blank",),
     ("section", "Contact"),
     ("kv", "Email", "rowaimsafdar@gmail.com"),
-    ("kv", "Website", "rowaimsafdar.github.io"),
     ("kv", "LinkedIn", "rowaimsafdar"),
     ("kv", "GitHub", "RowaimSafdar"),
     ("kv", "Location", "Pakistan, open to remote worldwide"),
@@ -141,7 +140,8 @@ def build(theme: str, art: list[str]) -> str:
         f'<text x="25" y="{art_top:.1f}" font-size="{ART_SIZE}" fill="{c["art"]}">',
     ]
     for i, row in enumerate(art):
-        o.append(f'<tspan x="25" y="{art_top + i * ART_LINE:.1f}">{escape(row)}</tspan>')
+        # non-breaking spaces: browsers collapse ordinary leading spaces in SVG text, which skews the portrait
+        o.append(f'<tspan x="25" y="{art_top + i * ART_LINE:.1f}">{escape(row).replace(" ", "&#160;")}</tspan>')
     o.append("</text>")
     o.append(f'<text x="{TEXT_X}" y="{text_top:.1f}" font-size="{TEXT_SIZE}">')
     for i, item in enumerate(PROFILE):
