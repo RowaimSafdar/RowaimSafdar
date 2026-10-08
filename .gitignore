@@ -1,0 +1,10 @@
+# The source photo is only used to generate the ASCII portrait
+photo.png
+github.png
+*_nobg.png
+*.jpg
+*.jpeg
+
+.env
+__pycache__/
+.venv/
