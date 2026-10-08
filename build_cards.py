@@ -29,12 +29,14 @@ PROFILE = [
     ("kv", "Email", "rowaimsafdar@gmail.com"),
     ("kv", "LinkedIn", "rowaimsafdar"),
     ("kv", "GitHub", "RowaimSafdar"),
-    ("kv", "Location", "Pakistan, open to remote worldwide"),
-    ("blank",),
-    ("section", "GitHub Stats"),
-    ("stats", ("repos", "Repos"), ("contributed", "Contributed")),
-    ("stats", ("stars", "Stars"), ("followers", "Followers")),
-    ("stats", ("commits", "Commits (1y)"), ("contributions", "Contributions (1y)")),
+    ("kv", "Location", "Islamabad, Pakistan"),
+    # GitHub stats are off for now. To bring them back, restore these lines and rebuild;
+    # update_stats.py and the workflow pick them up automatically.
+    # ("blank",),
+    # ("section", "GitHub Stats"),
+    # ("stats", ("repos", "Repos"), ("contributed", "Contributed")),
+    # ("stats", ("stars", "Stars"), ("followers", "Followers")),
+    # ("stats", ("commits", "Commits (1y)"), ("contributions", "Contributions (1y)")),
 ]
 
 THEMES = {

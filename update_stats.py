@@ -85,6 +85,9 @@ def apply(svg: str, stats: dict) -> str:
 
 
 def main() -> int:
+    if not any('_data"' in path.read_text(encoding="utf-8") for path in SVGS):
+        print("no stats fields in the SVGs (stats section is turned off), nothing to update")
+        return 0
     token = os.environ.get("ACCESS_TOKEN")
     if not token:
         print("error: set the ACCESS_TOKEN environment variable", file=sys.stderr)

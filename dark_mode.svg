@@ -37,29 +37,24 @@
 <tspan x="25" y="443.0">:.:......:.:::::::::::....:::::::::::::::.:::...</tspan>
 <tspan x="25" y="455.0">..:..:..:..:::::::::::...::::::::::::::::..::...</tspan>
 </text>
-<text x="345" y="40.2" font-size="15">
-<tspan x="345" y="40.2"><tspan class="head">rowaim@safdar</tspan><tspan class="dots"> --------------------------------------------------</tspan></tspan>
-<tspan x="345" y="60.8"><tspan class="dots">. </tspan><tspan class="key">OS:</tspan><tspan class="dots"> ............................ </tspan><tspan class="value">Windows, Linux Ubuntu, CentOS</tspan></tspan>
-<tspan x="345" y="81.2"><tspan class="dots">. </tspan><tspan class="key">Host:</tspan><tspan class="dots"> .......................................... </tspan><tspan class="value">Nysonian Inc.</tspan></tspan>
-<tspan x="345" y="101.8"><tspan class="dots">. </tspan><tspan class="key">Kernel:</tspan><tspan class="dots"> ............................... </tspan><tspan class="value">AI Automation Engineer</tspan></tspan>
-<tspan x="345" y="122.2"><tspan class="dots">. </tspan><tspan class="key">IDE:</tspan><tspan class="dots"> ............... </tspan><tspan class="value">VS Code, Claude Code, Cursor, Antigravity</tspan></tspan>
-<tspan x="345" y="142.8"><tspan class="dots">.</tspan></tspan>
-<tspan x="345" y="163.2"><tspan class="dots">. </tspan><tspan class="key">Languages.Programming:</tspan><tspan class="dots"> ..................... </tspan><tspan class="value">Python, SQL, Bash</tspan></tspan>
-<tspan x="345" y="183.8"><tspan class="dots">. </tspan><tspan class="key">Languages.Computer:</tspan><tspan class="dots"> ..................... </tspan><tspan class="value">JSON, YAML, Markdown</tspan></tspan>
-<tspan x="345" y="204.2"><tspan class="dots">. </tspan><tspan class="key">Languages.Real:</tspan><tspan class="dots"> ........................ </tspan><tspan class="value">English, Urdu, Pashto</tspan></tspan>
-<tspan x="345" y="224.8"><tspan class="dots">.</tspan></tspan>
-<tspan x="345" y="245.2"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Software:</tspan><tspan class="dots"> ...................... </tspan><tspan class="value">AI Agents, Automation</tspan></tspan>
-<tspan x="345" y="265.8"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Hardware:</tspan><tspan class="dots"> .... </tspan><tspan class="value">Football, Bike Travel, Nature Exploring</tspan></tspan>
-<tspan x="345" y="286.2"><tspan class="dots">.</tspan></tspan>
-<tspan x="345" y="306.8"><tspan class="dots">- </tspan><tspan class="head">Contact</tspan><tspan class="dots"> ------------------------------------------------------</tspan></tspan>
-<tspan x="345" y="327.2"><tspan class="dots">. </tspan><tspan class="key">Email:</tspan><tspan class="dots"> ................................ </tspan><tspan class="value">rowaimsafdar@gmail.com</tspan></tspan>
-<tspan x="345" y="347.8"><tspan class="dots">. </tspan><tspan class="key">LinkedIn:</tspan><tspan class="dots"> ....................................... </tspan><tspan class="value">rowaimsafdar</tspan></tspan>
-<tspan x="345" y="368.2"><tspan class="dots">. </tspan><tspan class="key">GitHub:</tspan><tspan class="dots"> ......................................... </tspan><tspan class="value">RowaimSafdar</tspan></tspan>
-<tspan x="345" y="388.8"><tspan class="dots">. </tspan><tspan class="key">Location:</tspan><tspan class="dots"> ................. </tspan><tspan class="value">Pakistan, open to remote worldwide</tspan></tspan>
-<tspan x="345" y="409.2"><tspan class="dots">.</tspan></tspan>
-<tspan x="345" y="429.8"><tspan class="dots">- </tspan><tspan class="head">GitHub Stats</tspan><tspan class="dots"> -------------------------------------------------</tspan></tspan>
-<tspan x="345" y="450.2"><tspan class="dots">. </tspan><tspan class="key">Repos:</tspan><tspan class="dots" id="repos_dots" data-w="22"> ................... </tspan><tspan class="value" id="repos_data">0</tspan><tspan class="dots"> | </tspan><tspan class="key">Contributed:</tspan><tspan class="dots" id="contributed_dots" data-w="19"> ................ </tspan><tspan class="value" id="contributed_data">0</tspan></tspan>
-<tspan x="345" y="470.8"><tspan class="dots">. </tspan><tspan class="key">Stars:</tspan><tspan class="dots" id="stars_dots" data-w="22"> ................... </tspan><tspan class="value" id="stars_data">0</tspan><tspan class="dots"> | </tspan><tspan class="key">Followers:</tspan><tspan class="dots" id="followers_dots" data-w="21"> .................. </tspan><tspan class="value" id="followers_data">0</tspan></tspan>
-<tspan x="345" y="491.2"><tspan class="dots">. </tspan><tspan class="key">Commits (1y):</tspan><tspan class="dots" id="commits_dots" data-w="15"> ............ </tspan><tspan class="value" id="commits_data">0</tspan><tspan class="dots"> | </tspan><tspan class="key">Contributions (1y):</tspan><tspan class="dots" id="contributions_dots" data-w="12"> ......... </tspan><tspan class="value" id="contributions_data">0</tspan></tspan>
+<text x="345" y="91.5" font-size="15">
+<tspan x="345" y="91.5"><tspan class="head">rowaim@safdar</tspan><tspan class="dots"> --------------------------------------------------</tspan></tspan>
+<tspan x="345" y="112.0"><tspan class="dots">. </tspan><tspan class="key">OS:</tspan><tspan class="dots"> ............................ </tspan><tspan class="value">Windows, Linux Ubuntu, CentOS</tspan></tspan>
+<tspan x="345" y="132.5"><tspan class="dots">. </tspan><tspan class="key">Host:</tspan><tspan class="dots"> .......................................... </tspan><tspan class="value">Nysonian Inc.</tspan></tspan>
+<tspan x="345" y="153.0"><tspan class="dots">. </tspan><tspan class="key">Kernel:</tspan><tspan class="dots"> ............................... </tspan><tspan class="value">AI Automation Engineer</tspan></tspan>
+<tspan x="345" y="173.5"><tspan class="dots">. </tspan><tspan class="key">IDE:</tspan><tspan class="dots"> ............... </tspan><tspan class="value">VS Code, Claude Code, Cursor, Antigravity</tspan></tspan>
+<tspan x="345" y="194.0"><tspan class="dots">.</tspan></tspan>
+<tspan x="345" y="214.5"><tspan class="dots">. </tspan><tspan class="key">Languages.Programming:</tspan><tspan class="dots"> ..................... </tspan><tspan class="value">Python, SQL, Bash</tspan></tspan>
+<tspan x="345" y="235.0"><tspan class="dots">. </tspan><tspan class="key">Languages.Computer:</tspan><tspan class="dots"> ..................... </tspan><tspan class="value">JSON, YAML, Markdown</tspan></tspan>
+<tspan x="345" y="255.5"><tspan class="dots">. </tspan><tspan class="key">Languages.Real:</tspan><tspan class="dots"> ........................ </tspan><tspan class="value">English, Urdu, Pashto</tspan></tspan>
+<tspan x="345" y="276.0"><tspan class="dots">.</tspan></tspan>
+<tspan x="345" y="296.5"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Software:</tspan><tspan class="dots"> ...................... </tspan><tspan class="value">AI Agents, Automation</tspan></tspan>
+<tspan x="345" y="317.0"><tspan class="dots">. </tspan><tspan class="key">Hobbies.Hardware:</tspan><tspan class="dots"> .... </tspan><tspan class="value">Football, Bike Travel, Nature Exploring</tspan></tspan>
+<tspan x="345" y="337.5"><tspan class="dots">.</tspan></tspan>
+<tspan x="345" y="358.0"><tspan class="dots">- </tspan><tspan class="head">Contact</tspan><tspan class="dots"> ------------------------------------------------------</tspan></tspan>
+<tspan x="345" y="378.5"><tspan class="dots">. </tspan><tspan class="key">Email:</tspan><tspan class="dots"> ................................ </tspan><tspan class="value">rowaimsafdar@gmail.com</tspan></tspan>
+<tspan x="345" y="399.0"><tspan class="dots">. </tspan><tspan class="key">LinkedIn:</tspan><tspan class="dots"> ....................................... </tspan><tspan class="value">rowaimsafdar</tspan></tspan>
+<tspan x="345" y="419.5"><tspan class="dots">. </tspan><tspan class="key">GitHub:</tspan><tspan class="dots"> ......................................... </tspan><tspan class="value">RowaimSafdar</tspan></tspan>
+<tspan x="345" y="440.0"><tspan class="dots">. </tspan><tspan class="key">Location:</tspan><tspan class="dots"> ................................ </tspan><tspan class="value">Islamabad, Pakistan</tspan></tspan>
 </text>
 </svg>
