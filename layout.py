@@ -19,6 +19,7 @@ PROFILE = [
     ("blank",),
     ("section", "Contact"),
     ("kv", "Email", "rowaimsafdar@gmail.com"),
+    ("kv", "Website", "rowaimsafdar.vercel.app"),
     ("kv", "LinkedIn", "rowaimsafdar"),
     ("kv", "GitHub", "RowaimSafdar"),
     ("kv", "Location", "Islamabad, Pakistan"),
