@@ -1,4 +1,4 @@
-name: Update GitHub stats
+name: Update profile card
 
 on:
   schedule:
@@ -25,7 +25,7 @@ jobs:
       - name: Update stats in SVGs
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: python update_stats.py
+        run: python today.py --refresh
 
       # Pushes made with the default GITHUB_TOKEN don't trigger workflows, so this can't loop.
       - name: Commit if changed

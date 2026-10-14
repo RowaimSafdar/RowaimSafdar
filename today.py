@@ -1,18 +1,26 @@
-"""Fetches GitHub stats for USER and writes them into dark_mode.svg and light_mode.svg.
+"""Fetches GitHub stats for USER and writes the numbers into dark_mode.svg and light_mode.svg.
 
-Needs a token in the ACCESS_TOKEN environment variable. Only the text inside the
-<tspan id="<stat>_data"> and <tspan id="<stat>_dots"> elements changes; each line keeps
-its length, so values stay right-aligned. If anything fails, the SVGs are left untouched.
+Run:  python today.py            (uses cache/stats.json if it is less than an hour old)
+      python today.py --refresh  (always fetch fresh numbers)
+
+Needs a token in the ACCESS_TOKEN environment variable, never in code. Only the text inside the
+<tspan id="<stat>_data"> and <tspan id="<stat>_dots"> elements changes; each line keeps its
+length, so values stay right-aligned. If anything fails, the SVGs are left untouched.
 """
+import json
 import os
 import re
 import sys
+import time
 from pathlib import Path
 
 import requests
 
 USER = "RowaimSafdar"
-SVGS = [Path("dark_mode.svg"), Path("light_mode.svg")]
+ROOT = Path(__file__).resolve().parent
+SVGS = [ROOT / "dark_mode.svg", ROOT / "light_mode.svg"]
+CACHE = ROOT / "cache" / "stats.json"
+CACHE_MAX_AGE = 3600  # seconds
 API = "https://api.github.com/graphql"
 
 QUERY = """
@@ -68,6 +76,21 @@ def fetch_stats(token: str) -> dict:
     }
 
 
+def cached_stats() -> dict | None:
+    try:
+        data = json.loads(CACHE.read_text())
+        if time.time() - data["fetched_at"] < CACHE_MAX_AGE:
+            return data["stats"]
+    except (OSError, ValueError, KeyError):
+        pass
+    return None
+
+
+def save_cache(stats: dict) -> None:
+    CACHE.parent.mkdir(exist_ok=True)
+    CACHE.write_text(json.dumps({"fetched_at": time.time(), "stats": stats}, indent=1))
+
+
 def apply(svg: str, stats: dict) -> str:
     for name, number in stats.items():
         value = f"{number:,}"
@@ -86,14 +109,17 @@ def apply(svg: str, stats: dict) -> str:
 
 def main() -> int:
     if not any('_data"' in path.read_text(encoding="utf-8") for path in SVGS):
-        print("no stats fields in the SVGs (stats section is turned off), nothing to update")
+        print("no stats fields in the SVGs (stats section is turned off in layout.py), nothing to update")
         return 0
-    token = os.environ.get("ACCESS_TOKEN")
-    if not token:
-        print("error: set the ACCESS_TOKEN environment variable", file=sys.stderr)
-        return 1
+    stats = None if "--refresh" in sys.argv else cached_stats()
     try:
-        stats = fetch_stats(token)
+        if stats is None:
+            token = os.environ.get("ACCESS_TOKEN")
+            if not token:
+                print("error: set the ACCESS_TOKEN environment variable", file=sys.stderr)
+                return 1
+            stats = fetch_stats(token)
+            save_cache(stats)
         updated = {path: apply(path.read_text(encoding="utf-8"), stats) for path in SVGS}
     except (requests.RequestException, RuntimeError, KeyError, OSError) as e:
         print(f"error: {e} (SVGs left unchanged)", file=sys.stderr)
