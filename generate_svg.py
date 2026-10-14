@@ -57,6 +57,12 @@ def build(theme: str) -> str:
         f'viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{FONT}">',
         "<style>",
         f".key{{fill:{c['key']}}} .value{{fill:{c['value']}}} .dots{{fill:{c['dots']}}} .head{{fill:{c['head']}}}",
+        # Terminal feel: info lines print in order once per view, the cursor keeps blinking.
+        ".ln{animation:print .35s ease-out both}",
+        f".cur{{fill:{c['key']};animation:blink 1.1s steps(1) infinite}}",
+        "@keyframes print{from{opacity:0}to{opacity:1}}",
+        "@keyframes blink{50%{fill-opacity:0}}",
+        "@media (prefers-reduced-motion:reduce){.ln,.cur{animation:none}}",
         "</style>",
         f'<rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{HEIGHT - 1}" rx="15" fill="{c["bg"]}" stroke="{c["border"]}"/>',
         f'<text x="{ART_X}" y="{art_top:.1f}" font-size="{ART_SIZE}" fill="{c["art"]}">',
@@ -65,7 +71,6 @@ def build(theme: str) -> str:
         # Non-breaking spaces: browsers collapse ordinary leading spaces in SVG text, which skews the portrait.
         o.append(f'<tspan x="{ART_X}" y="{art_top + i * ART_LINE:.1f}">{escape(row).replace(" ", "&#160;")}</tspan>')
     o.append("</text>")
-    o.append(f'<text x="{TEXT_X}" y="{text_top:.1f}" font-size="{TEXT_SIZE}">')
     for i, item in enumerate(PROFILE):
         parts, spans = line_parts(item), []
         for j, part in enumerate(parts):
@@ -75,8 +80,14 @@ def build(theme: str) -> str:
                 # Fixed width of dots + value, so today.py can re-pad the line as numbers change.
                 pid += f' data-w="{len(text) + len(parts[j + 1][1])}"'
             spans.append(f'<tspan class="{cls}"{pid}>{escape(text)}</tspan>')
-        o.append(f'<tspan x="{TEXT_X}" y="{text_top + i * TEXT_LINE:.1f}">{"".join(spans)}</tspan>')
-    o += ["</text>", "</svg>", ""]
+        if item[0] == "header":
+            # "rowaim@safdar _ -----": the cursor takes two of the dashes' places, so the line stays the same width.
+            spans[1] = spans[1].replace("> --", "> ", 1)
+            spans.insert(1, '<tspan class="dots"> </tspan><tspan class="cur">_</tspan>')
+        # One <text> per line (tspans can't be faded on their own in every browser).
+        o.append(f'<text class="ln" x="{TEXT_X}" y="{text_top + i * TEXT_LINE:.1f}" font-size="{TEXT_SIZE}" '
+                 f'style="animation-delay:{0.15 + i * 0.07:.2f}s">{"".join(spans)}</text>')
+    o += ["</svg>", ""]
     return "\n".join(o)
 
 
