@@ -6,18 +6,43 @@ Stats values start as 0; today.py fills them in (locally or via the daily GitHub
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-from layout import (ART_LINE, ART_RAMP, ART_SIZE, ART_X, FONT, HEIGHT, LEFT_COL, LINE_CHARS, PROFILE,
+from layout import (ART_COLS, ART_LINE, ART_RAMP, ART_ROWS, ART_SIZE, ART_X, FONT, HEIGHT, LEFT_COL, LINE_CHARS, PROFILE,
                     RIGHT_COL, TEXT_LINE, TEXT_SIZE, TEXT_X, THEMES, WIDTH)
 
 ROOT = Path(__file__).resolve().parent
 
 
 def load_art(theme: str) -> list[str]:
-    rows = (ROOT / "ascii-art.txt").read_text(encoding="utf-8").rstrip("\n").split("\n")
-    if theme == "dark":
-        return [r.rstrip() for r in rows]
-    mirror = {c: ART_RAMP[len(ART_RAMP) - 1 - i] for i, c in enumerate(ART_RAMP)}
-    return ["".join(mirror.get(c, c) for c in r).rstrip() for r in rows]
+    """Zoom the source art uniformly to ART_ROWS, centre-cropping the width to ART_COLS,
+    by resampling ramp levels bilinearly (the same method as muhammadhaider02's card)."""
+    lines = (ROOT / "ascii-art.txt").read_text(encoding="utf-8").rstrip("\n").split("\n")
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    src_w = max(len(line) for line in lines)
+    src = [[ART_RAMP.index(ch) for ch in line.ljust(src_w)] for line in lines]
+    src_h = len(src)
+    scale = ART_ROWS / src_h
+    crop = (src_w * scale - ART_COLS) / 2  # columns trimmed off each side
+    if crop < 0:
+        raise ValueError("ascii-art.txt is too narrow to fill ART_COLS; make it wider")
+
+    def sample(sy: float, sx: float) -> float:
+        y0, x0 = min(max(int(sy), 0), src_h - 1), min(max(int(sx), 0), src_w - 1)
+        y1, x1 = min(y0 + 1, src_h - 1), min(x0 + 1, src_w - 1)
+        fy, fx = min(max(sy - y0, 0), 1), min(max(sx - x0, 0), 1)
+        top = src[y0][x0] * (1 - fx) + src[y0][x1] * fx
+        bottom = src[y1][x0] * (1 - fx) + src[y1][x1] * fx
+        return top * (1 - fy) + bottom * fy
+
+    top_level = len(ART_RAMP) - 1
+    rows = []
+    for r in range(ART_ROWS):
+        sy = (r + 0.5) / scale - 0.5
+        levels = [min(top_level, max(0, round(sample(sy, (c + crop + 0.5) / scale - 0.5)))) for c in range(ART_COLS)]
+        if theme == "light":  # mirror the ramp, keeping the background blank
+            levels = [0 if v == 0 else top_level + 1 - v for v in levels]
+        rows.append("".join(ART_RAMP[v] for v in levels).rstrip())
+    return rows
 
 
 def kv_parts(key: str, value: str, width: int, value_id: str | None = None) -> list[tuple]:
@@ -56,6 +81,9 @@ def build(theme: str) -> str:
         f'<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="{WIDTH}" height="{HEIGHT}" '
         f'viewBox="0 0 {WIDTH} {HEIGHT}" font-family="{FONT}">',
         "<style>",
+        # Pins character widths to Consolas metrics, so both columns keep their layout on every OS.
+        "@font-face{src:local('Consolas'),local('Consolas Bold');font-family:'ConsolasFallback';"
+        "font-display:swap;-webkit-size-adjust:109%;size-adjust:109%}",
         f".key{{fill:{c['key']}}} .value{{fill:{c['value']}}} .dots{{fill:{c['dots']}}} .head{{fill:{c['head']}}}",
         # Terminal feel: info lines print in order once per view, the cursor keeps blinking.
         ".ln{animation:print .35s ease-out both}",

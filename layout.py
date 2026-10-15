@@ -39,16 +39,18 @@ THEMES = {
                   dots="#9AA7B3", head="#1F2328", art="#57606A"),
 }
 
-# Geometry
+# Geometry (Consolas with size-adjust 109%: a character is 0.55 * 1.09 * font-size wide)
 WIDTH, HEIGHT = 985, 530
 FONT = "ConsolasFallback, Consolas, 'Courier New', monospace"
 LINE_CHARS = 64            # every info line is exactly this many characters, so values share one right edge
-TEXT_X = 345
+TEXT_X = 390               # 64 chars at 15px is ~576px, so lines end at ~966
 TEXT_SIZE, TEXT_LINE = 15, 20.5
-ART_X = 25
-ART_SIZE, ART_LINE = 10, 12
+ART_X = 15
+ART_SIZE, ART_LINE = 6, 7.5  # ~3.6px wide characters: 100 columns fill the 360px left panel
+ART_ROWS, ART_COLS = 62, 100  # the portrait is resampled to exactly this many characters
 LEFT_COL, RIGHT_COL = 30, 31  # stats columns: LEFT_COL + " | " + RIGHT_COL == LINE_CHARS
 
-# ascii-art.txt holds the dark-mode portrait (dense characters = bright pixels).
+# ascii-art.txt holds a high-resolution dark-mode portrait (dense characters = bright pixels,
+# space = background); generate_svg.py zooms it to ART_ROWS and centre-crops it to ART_COLS.
 # The light card mirrors this ramp so the face still reads correctly on a light background.
-ART_RAMP = ".:-=+*#%@"
+ART_RAMP = " .:-=+*#%@"
